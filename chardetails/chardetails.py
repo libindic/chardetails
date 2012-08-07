@@ -20,48 +20,54 @@
 #
 # If you find any bugs or have any suggestions email: santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
-from common import *
-import os,sys
-from unicodedata import *
-class CharDetails(SilpaModule):
+
+import os, sys
+import unicodedata
+
+__all__ = ['CharDetails','getInstance']
+
+class CharDetails:
     def __init__(self):
-        self.template=os.path.join(os.path.dirname(__file__), 'chardetails.html')
+        self.template = os.path.join(os.path.dirname(__file__), \
+                'chardetails.html')
         self.response = SilpaResponse(self.template)
-    
-    @ServiceMethod          
+
     def getdetails(self, text):
-        chardetails={}
+        chardetails = {}
         for character in text:
             chardetails[character] = {}
-            chardetails[character]['Name']= name(character) 
-            chardetails[character]['HTML Entity']=str(ord(character)) 
-            chardetails[character]['Code point']= repr(character)
+            chardetails[character]['Name'] = unicodedata.name(character)
+            chardetails[character]['HTML Entity'] = str(ord(character))
+            chardetails[character]['Code point'] = repr(character)
             try:
-                chardetails[character]['Numeric Value'] = numeric (character)
+                chardetails[character]['Numeric Value'] = \
+                        unicodedata.numeric(character)
             except:
                 pass    
             try:        
-                chardetails[character]['Decimal Value']=decimal (character)
+                chardetails[character]['Decimal Value'] = \
+                        unicodedata.decimal(character)
             except:
                 pass    
             try:        
-                chardetails[character]['Digit']=digit(mychar)
+                chardetails[character]['Digit'] = unicodedata.digit(mychar)
             except:
                 pass    
-            chardetails[character]['Alphabet']=str(character.isalpha())
-            chardetails[character]['Digit']=str(character.isdigit())
-            chardetails[character]['AlphaNumeric']=str(character.isalnum())
-            chardetails[character]['Canonical Decomposition']=  decomposition(character)
-            
+            chardetails[character]['Alphabet'] = str(character.isalpha())
+            chardetails[character]['Digit'] = str(character.isdigit())
+            chardetails[character]['AlphaNumeric'] = str(character.isalnum())
+            chardetails[character]['Canonical Decomposition'] = \
+                    unicodedata.decomposition(character)
+
         chardetails['Characters'] = list(text)
         return chardetails
     
     def get_module_name(self):
         return "Unicode Character Details"
+
     def get_info(self):
-        return  "Shows the Unicode Character Details of a given character"  
-        
+        return  "Shows the Unicode Character Details of a given character"
+
 def getInstance():
     return CharDetails()
 
-    
