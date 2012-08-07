@@ -15,7 +15,7 @@ setup(
     long_description = "This library helps to get details of \
 unicode characters.",
     packages = find_packages('.'),
-    package_data = {'.'},
+    package_data = {'.':[]},
     include_package_data = True,
     setup_requires = ['setuptools-git'],
     install_requires = ['setuptools'],
