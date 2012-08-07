@@ -21,7 +21,7 @@
 # If you find any bugs or have any suggestions email: santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
-import os, sys
+import os
 import unicodedata
 
 __all__ = ['CharDetails','getInstance']
@@ -30,7 +30,6 @@ class CharDetails:
     def __init__(self):
         self.template = os.path.join(os.path.dirname(__file__), \
                 'chardetails.html')
-        self.response = SilpaResponse(self.template)
 
     def getdetails(self, text):
         chardetails = {}
@@ -43,16 +42,16 @@ class CharDetails:
                 chardetails[character]['Numeric Value'] = \
                         unicodedata.numeric(character)
             except:
-                pass    
-            try:        
+                pass
+            try:
                 chardetails[character]['Decimal Value'] = \
                         unicodedata.decimal(character)
             except:
-                pass    
-            try:        
+                pass
+            try:
                 chardetails[character]['Digit'] = unicodedata.digit(mychar)
             except:
-                pass    
+                pass
             chardetails[character]['Alphabet'] = str(character.isalpha())
             chardetails[character]['Digit'] = str(character.isdigit())
             chardetails[character]['AlphaNumeric'] = str(character.isalnum())
@@ -66,7 +65,7 @@ class CharDetails:
         return "Unicode Character Details"
 
     def get_info(self):
-        return  "Shows the Unicode Character Details of a given character"
+        return "Shows the Unicode Character Details of a given character"
 
 def getInstance():
     return CharDetails()
