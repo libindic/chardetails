@@ -1,4 +1,4 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from chardetails import *
+from chardetails.core import CharDetails, getInstance
 
