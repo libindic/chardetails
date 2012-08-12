@@ -18,19 +18,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
-# If you find any bugs or have any suggestions email: santhosh.thottingal@gmail.com
+# If you find any bugs or have any suggestions email: 
+# santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
 import os
 import unicodedata
 
-__all__ = ['CharDetails','getInstance']
+__all__ = ['CharDetails', 'getInstance']
+
 
 class CharDetails:
-    def __init__(self):
-        self.template = os.path.join(os.path.dirname(__file__), \
-                'chardetails.html')
-
     def getdetails(self, text):
         chardetails = {}
         for character in text:
@@ -60,13 +58,13 @@ class CharDetails:
 
         chardetails['Characters'] = list(text)
         return chardetails
-    
+
     def get_module_name(self):
         return "Unicode Character Details"
 
     def get_info(self):
         return "Shows the Unicode Character Details of a given character"
 
+
 def getInstance():
     return CharDetails()
-
