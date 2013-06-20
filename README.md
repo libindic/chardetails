@@ -1,7 +1,7 @@
 Character details Module
 ==================
 
-This module helps to get details of a given unicode character. 
+This module helps to get details of a given unicode character.
 
-Run Tests by using python -m chardetails.tests.chardetails_tests from 
+Run Tests by using python -m chardetails.tests.chardetails_tests from
 root directory
