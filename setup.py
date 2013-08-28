@@ -19,5 +19,6 @@ unicode characters.",
     include_package_data = True,
     setup_requires = ['setuptools-git'],
     install_requires = ['setuptools'],
+    test_suite="tests",
     zip_safe = False,
     )
