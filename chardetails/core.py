@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
-# If you find any bugs or have any suggestions email: 
+# If you find any bugs or have any suggestions email:
 # santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
@@ -29,7 +29,47 @@ __all__ = ['CharDetails', 'getInstance']
 
 
 class CharDetails:
+    """
+    Shows the Unicode Character Details of a given character
+    """
     def getdetails(self, text):
+        """
+        Gives details of all charecters in the given string.
+
+        :param text: The unicode string to be examined.
+        :type text: str.
+        :returns:  dictionary with details.
+
+        ::
+
+         >>> import chardetails.getInstance
+         >>> a = getInstance()
+         >>> a.getdetails(u"run")
+         {'Characters': [u'r', u'u', u'n'],
+         u'n': {'AlphaNumeric': 'True',
+         'Alphabet': 'True',
+         'Canonical Decomposition': '',
+         'Code point': "u'n'",
+         'Digit': 'False',
+         'HTML Entity': '110',
+         'Name': 'LATIN SMALL LETTER N'},
+         u'r': {'AlphaNumeric': 'True',
+         'Alphabet': 'True',
+         'Canonical Decomposition': '',
+         'Code point': "u'r'",
+         'Digit': 'False',
+         'HTML Entity': '114',
+         'Name': 'LATIN SMALL LETTER R'},
+         u'u': {'AlphaNumeric': 'True',
+         'Alphabet': 'True',
+         'Canonical Decomposition': '',
+         'Code point': "u'u'",
+         'Digit': 'False',
+         'HTML Entity': '117',
+         'Name': 'LATIN SMALL LETTER U'}}
+
+
+        """
         chardetails = {}
         for character in text:
             chardetails[character] = {}
@@ -60,11 +100,14 @@ class CharDetails:
         return chardetails
 
     def get_module_name(self):
+        """Returns modules Name """
         return "Unicode Character Details"
 
     def get_info(self):
+        """ Gives Info on the module """
         return "Shows the Unicode Character Details of a given character"
 
 
 def getInstance():
+    """Returns an instance of :class:`CharDetails` class."""
     return CharDetails()
