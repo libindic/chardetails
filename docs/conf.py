@@ -253,4 +253,4 @@ texinfo_documents = [
 intersphinx_mapping = {'http://docs.python.org/': None}
 sys.path.append(os.path.abspath('_themes'))
 html_theme_path = ['_themes']
-html_theme = 'flask'
+html_theme = 'kr'
