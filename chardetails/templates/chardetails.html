@@ -30,24 +30,20 @@ $(document).ready(function() {
                 },
                 success: function(msg) {
                     id_progress.hide();
-                    var resultobj =  msg.result,
-                        characters = resultobj.Characters;
-                    for(var index in characters) {
-                      var char = characters[index],
-                        chardetails = resultobj[char],
-                        output = $("<div>")
-                            .append($('<h3>').text(char))
+                    var resultobj =  msg.result;
+                    $.each(resultobj.Characters, function(index, character) {
+                      var output = $("<div>")
+                            .append($('<h3>').text(character))
                             .append($("<table>").addClass("table table-bordered"));
 
-                      for(var property in chardetails)
-                      {
-                        var row = $('<tr>')
+                      $.each(resultobj[character], function(property, value) {
+                        $('table', output).append($('<tr>')
                           .append($('<td>').text(property))
-                          .append($('<td>').text(chardetails[property]));
-                        $('table', output).append(row);
-                      };
+                          .append($('<td>').text(value))
+                        );
+                      });
                       id_result.append(output);
-                    };
+                    });
                     id_result.show();
                 },
                 error: function(msg) {
