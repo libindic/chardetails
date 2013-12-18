@@ -1,58 +1,63 @@
 {% extends "silpa.html" %}
+
 {% block modulescript %}
 <script>
 $(document).ready(function() {
-$("form").submit(function(event)
-{
-    event.preventDefault();
-    var jsonRequest = {
-        "method" :  "chardetails.getdetails",
-        "params" : [$("input[name=character]", 'form').val()],
-        "id" : ""
-    };
-    id_result = $('#result');
-    id_error = $('#errormessage');
-    id_progress = $('#progress');
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "JSONRPC",
-        data: JSON.stringify(jsonRequest),
-        dataType: "json",
-        beforeSend:function(){
-            id_result.empty();
-            id_error.hide();
-            id_progress.html("Checking. Please Wait..").show();
-        },
-        success: function(msg) {
-            var resultobj =  msg.result ;
-            id_progress.hide();
-            // Render it
-            characters = resultobj['Characters'];
+    $("form").submit(function(event)
+    {
+        event.preventDefault();
+        var char = $("input[name=character]", 'form').val(),
+            jsonRequest = {
+                method:  "chardetails.getdetails",
+                params: [char],
+                id: ""
+            },
+            id_result = $('#result'),
+            id_error = $('#errormessage'),
+            id_progress = $('#progress');
 
-            for (var index in characters) {
-              var character = characters[index];
-              chardetails = resultobj[character]
-              var output = $("<div>")
-                .append($('<h3>').text(character))
-                .append($("<table>").addClass("table table-bordered"));
+        if(char !== "") {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "JSONRPC",
+                data: JSON.stringify(jsonRequest),
+                dataType: "json",
+                beforeSend:function(){
+                    id_result.empty();
+                    id_error.hide();
+                    id_progress.html("Checking. Please Wait..").show();
+                },
+                success: function(msg) {
+                    id_progress.hide();
+                    var resultobj =  msg.result,
+                        characters = resultobj.Characters;
+                    for(var index in characters) {
+                      var chardetails = resultobj[characters[index]],
+                        output = $("<div>")
+                            .append($('<h3>').text(character))
+                            .append($("<table>").addClass("table table-bordered"));
 
-              for (var property in chardetails)
-              {
-                var row = $('<tr>')
-                  .append($('<td>').text(property))
-                  .append($('<td>').text(chardetails[property]));
-                $('table', output).append(row);
-              };
-              id_result.append(output);
-            };
-        },
-        error: function(msg) {
-            id_progress.hide();
-            id_error.html("Something went wrong. Please try again!").show();
+                      for(var property in chardetails)
+                      {
+                        var row = $('<tr>')
+                          .append($('<td>').text(property))
+                          .append($('<td>').text(chardetails[property]));
+                        $('table', output).append(row);
+                      };
+                      id_result.append(output);
+                    };
+                },
+                error: function(msg) {
+                    id_progress.hide();
+                    id_error.html("Something went wrong. Please try again!").show();
+                }
+            });
+        } else {
+            id_result.hide();
+            id_error.html("Enter a character").show();
         }
     });
-});
 });
 </script>
 {% endblock %}
