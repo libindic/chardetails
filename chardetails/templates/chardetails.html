@@ -33,9 +33,10 @@ $(document).ready(function() {
                     var resultobj =  msg.result,
                         characters = resultobj.Characters;
                     for(var index in characters) {
-                      var chardetails = resultobj[characters[index]],
+                      var char = characters[index],
+                        chardetails = resultobj[char],
                         output = $("<div>")
-                            .append($('<h3>').text(character))
+                            .append($('<h3>').text(char))
                             .append($("<table>").addClass("table table-bordered"));
 
                       for(var property in chardetails)
@@ -47,6 +48,7 @@ $(document).ready(function() {
                       };
                       id_result.append(output);
                     };
+                    id_result.show();
                 },
                 error: function(msg) {
                     id_progress.hide();
@@ -63,24 +65,23 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block content %}
-<div class="well">
-  <h2>Unicode Character Details</h2></hr>
-  <p>Enter a character to get the unicode details
-  </p>
-  <form class="form-horizontal" action="" method="post">
-    <div class="control-group">
-      <label class="control-label" for="character">Character :</label>
-      <div class="controls">
-        <input type="text" name="character" id="character"/>
-        <button class="btn" type="submit" id="Char_Details">Get Details</button>
-      </div>
-    </div>
-    </br>
-  </form>
-  <hr/>
-  <div id="progress" class="alert alert-info hide"></div>
-  <div id="successmessage" class="alert alert-success hide"></div>
-  <div id="errormessage" class="alert alert-error hide"></div>
-  <div id="result"></div>
+<div class="page-header">
+    <h1>Unicode Character Details</h1>
 </div>
+
+<p>Enter a character to get the unicode details</p>
+
+<form class="form-inline form-group" action="" method="post">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="character">Character</label>
+    </div>
+    <div class="form-group">
+        <input type="text" name="character" id="character" class="form-control"/>
+    </div>
+    <button class="btn btn-default" type="submit" id="Char_Details">Get Details</button>
+</form>
+
+<div id="progress" class="alert alert-info silpa-hide"></div>
+<div id="errormessage" class="alert alert-danger silpa-hide"></div>
+<div id="result"></div>
 {% endblock %}
