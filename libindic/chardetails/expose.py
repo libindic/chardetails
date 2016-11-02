@@ -1,5 +1,6 @@
 from chardetails.core import CharDetails
 
+
 def chardetails_getdetails(text):
     C = CharDetails()
     result = C.getdetails(text)
@@ -7,6 +8,6 @@ def chardetails_getdetails(text):
     del result['Characters']
     return result
 
-def get_details():
-    return [chardetails_getdetails, str, {str:{str:str}}]
 
+def get_details():
+    return [chardetails_getdetails, str, {str: {str: str}}]

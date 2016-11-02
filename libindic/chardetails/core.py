@@ -32,6 +32,7 @@ class CharDetails:
     """
     Shows the Unicode Character Details of a given character
     """
+
     def getdetails(self, text):
         """
         Gives details of all charecters in the given string.
@@ -78,12 +79,12 @@ class CharDetails:
             chardetails[character]['Code point'] = repr(character)
             try:
                 chardetails[character]['Numeric Value'] = \
-                        unicodedata.numeric(character)
+                    unicodedata.numeric(character)
             except:
                 pass
             try:
                 chardetails[character]['Decimal Value'] = \
-                        unicodedata.decimal(character)
+                    unicodedata.decimal(character)
             except:
                 pass
             try:
@@ -94,7 +95,7 @@ class CharDetails:
             chardetails[character]['Digit'] = str(character.isdigit())
             chardetails[character]['AlphaNumeric'] = str(character.isalnum())
             chardetails[character]['Canonical Decomposition'] = \
-                    unicodedata.decomposition(character)
+                unicodedata.decomposition(character)
 
         chardetails['Characters'] = list(text)
         return chardetails
