@@ -88,7 +88,7 @@ class CharDetails:
             except:
                 pass
             try:
-                chardetails[character]['Digit'] = unicodedata.digit(mychar)
+                chardetails[character]['Digit'] = unicodedata.digit(character)
             except:
                 pass
             chardetails[character]['Alphabet'] = str(character.isalpha())
