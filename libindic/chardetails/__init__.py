@@ -1,3 +1,3 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from chardetails.core import CharDetails, getInstance
+from .core import CharDetails, getInstance
